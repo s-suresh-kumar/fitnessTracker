@@ -19,6 +19,7 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
 app.post("/api/workouts", ({ body }, res) => {
+  console.log('body', body);
   db.Workout.create({})
     .then(dbWorkout => {
       console.log(dbWorkout);
@@ -28,7 +29,7 @@ app.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-app.put("/api/workouts", ({ body }, res) => {
+app.put("/api/workouts/:id", ({ body }, res) => {
   db.Workout.create(body)
     .then(({ _id }) => db.Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true }))
     .then(dbWorkout => {
