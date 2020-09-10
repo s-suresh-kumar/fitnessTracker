@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
 
 app.post("/api/workouts", ({ body }, res) => {
   console.log('body', body);
@@ -29,9 +29,10 @@ app.post("/api/workouts", ({ body }, res) => {
     });
 });
 
-app.put("/api/workouts/:id", ({ body }, res) => {
-  db.Workout.create(body)
-    .then(({ _id }) => db.Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true }))
+app.put("/api/workouts/:id", ({ params, body }, res) => {
+  let _id = mongoose.Types.ObjectId(params.id);
+
+  db.Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true })
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
@@ -39,6 +40,7 @@ app.put("/api/workouts/:id", ({ body }, res) => {
       res.json(err);
     });
 });
+
 
 app.get("/api/workouts/range", (req, res) => {
   db.Workout.find({}).limit(7)
