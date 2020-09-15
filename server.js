@@ -20,9 +20,10 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { use
 
 app.post("/api/workouts", ({ body }, res) => {
   console.log('body', body);
-  db.Workout.create({})
+  db.Workout.create({ body })
     .then(dbWorkout => {
       console.log(dbWorkout);
+      res.json(dbWorkout);
     })
     .catch(({ message }) => {
       console.log(message);
@@ -30,15 +31,27 @@ app.post("/api/workouts", ({ body }, res) => {
 });
 
 app.put("/api/workouts/:id", ({ params, body }, res) => {
-  let _id = mongoose.Types.ObjectId(params.id);
-
-  db.Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true })
+  db.Workout.findByIdAndUpdate(
+    params.id,
+    { $push: { exercises: body } },
+    // "runValidators" will ensure new exercises meet our schema requirements
+    { new: true, runValidators: true }
+  )
     .then(dbWorkout => {
       res.json(dbWorkout);
     })
     .catch(err => {
       res.json(err);
     });
+  // let _id = mongoose.Types.ObjectId(params.id);
+
+  // db.Workout.findOneAndUpdate({}, { $push: { exercises: _id } }, { new: true })
+  //   .then(dbWorkout => {
+  //     res.json(dbWorkout);
+  //   })
+  //   .catch(err => {
+  //     res.json(err);
+  //   });
 });
 
 
@@ -57,6 +70,8 @@ app.get("/api/workouts/range", (req, res) => {
 app.get("/api/workouts", (req, res) => {
   db.Workout.find({})
     .then(dbWorkout => {
+      console.log('dbWorkout', dbWorkout);
+      console.log('current', dbWorkout[9].totalDuration);
       res.json(dbWorkout);
     })
     .catch(err => {
