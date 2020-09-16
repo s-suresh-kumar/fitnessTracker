@@ -2,9 +2,9 @@
 
 # fitnesstracker
 
-A burger logger (restuarant app) with MySQL, Node, Express, Handlebars and a homemade ORM following the MVC design pattern
+A workout tracker  with mongoDb, Mongoose, Node, Express.
 
-[![Thumbnail](public/assets/img/Eat-Da-Burger-thumbnail.JPG)](https://intense-hollows-80590.herokuapp.com/)
+[![Thumbnail](public/assets/images/fitnessTracker-thumnail.JPG)](https://fast-ridge-87581.herokuapp.com/)
 
 ## Table of Contents
 
@@ -32,14 +32,14 @@ The user log and track his workouts grouped under "resistance" and cardio catego
 
 You need express,  mongo, mongoose, morgan packages installed for this app to run. So the steps are :
 
-1. Clone this [repository](https://github.com/s-suresh-kumar/Eat-Da-Burger)
+1. Clone this [repository](https://github.com/s-suresh-kumar/fitnessTracker)
 2. Issue `npm i` at your local repository root, so that all dependencies (express, express-handlebars, mysql, dotenv packages ) are installed.
 3. Then you can use loop back address on your local machine to exercise this app. For that launch the app at the root of the repository 'nodemon server.js'. Then in the browser, go to http://localhost:3000/ and navigate from there to see the app in action.
 4. You may also deploy it in deployment platforms such as Heroku and then access the app using the url provided by the platform.
 
 ## Instructions
 
-Since this is a full stack app, the app needs to be deployed first. There is a deployed version available in Heroku. The url for the deployed app is https://intense-hollows-80590.herokuapp.com/. From here by filling out a new workout and exercise details workout will  get created in the database . It is possible to add exercises to existing workout of that day, be it completed or otherwise. But for past days' you cannot modify the workouts, viz., you cannot add exercises to past time ( past days). Currently there is no way to neither delete the burger nor clear the database for the user.
+Since this is a full stack app, the app needs to be deployed first. There is a deployed version available in Heroku. The url for the deployed app is https://fast-ridge-87581.herokuapp.com/. From here by filling out a new workout and exercise details workout will  get created in the database . It is possible to add exercises to existing workout of that day, be it completed or otherwise. But for past days' you cannot modify the workouts, viz., you cannot add exercises to past time ( past days). Currently there is no way to neither delete the burger nor clear the database for the user.
 
 ## License
 
@@ -103,7 +103,7 @@ This Code of Conduct is adapted from the Contributor Covenant, version 1.4, avai
 
 ## Tests
 
-There are no automated tests written for this app. However it is easy to launch the app by going to https://agile-everglades-01445.herokuapp.com/, Once the page is visited, it is straight forward to create new burgers and devour it, by using the appropriate forms and buttons.
+There are no automated tests written for this app. However it is easy to launch the app by going to https://fast-ridge-87581.herokuapp.com/, Once the page is visited, it is straight forward to create new workouts and add exercises to it, by entering workout details.
 
 ## Questions
 
