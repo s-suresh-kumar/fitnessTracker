@@ -110,4 +110,4 @@ There are no automated tests written for this app. However it is easy to launch 
 Please send your questions via e-mail or via my github profile.
 
 suresh01@yahoo.com
-[![Thumbnail](public/assets/img/github.jpg)](https://github.com/s-suresh-kumar)
+[![Thumbnail](public/assets/images/github.jpg)](https://github.com/s-suresh-kumar)
