@@ -1,7 +1,16 @@
 let mongoose = require("mongoose");
 let db = require("../models");
+require("dotenv").config();
 
-mongoose.connect("mongodb://localhost/workout", {
+// mongoose.connect("mongodb://localhost/workout", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+//   useFindAndModify: false
+// });
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -130,9 +139,11 @@ db.Workout.deleteMany({})
   .then(() => db.Workout.collection.insertMany(workoutSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
+    console.log('mongouri', process.env.MONGODB_URI);
     process.exit(0);
   })
   .catch(err => {
+    console.log('mongouri', process.env.MONGODB_URI);
     console.error(err);
     process.exit(1);
   });
